@@ -4,6 +4,7 @@ import { env } from "~/env";
 const client = new DuneClient(env.DUNE_API_KEY);
 
 const queryId = 3958723;
+
 const opts: RunQueryArgs = {
   queryId,
   query_parameters: [

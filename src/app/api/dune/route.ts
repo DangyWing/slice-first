@@ -1,11 +1,7 @@
 export const dynamic = "force-dynamic"; // defaults to auto
 
-import { DuneClient } from "@duneanalytics/client-sdk";
-import { env } from "~/env";
 import { insertTxs } from "~/server/db/queries";
 import { fetchDuneData } from "~/server/dune/fetchDuneData";
-
-// const client = new DuneClient(env.DUNE_API_KEY);
 
 interface DuneData {
   Type: string;
@@ -17,9 +13,7 @@ interface DuneData {
 }
 
 export async function GET() {
-  //   Fetch data from Dune
-
-  console.log("getting dune data .. ");
+  console.log("getting dune data..");
   const data = await fetchDuneData();
   console.log("got dune data..");
 
@@ -27,10 +21,8 @@ export async function GET() {
 
   if (!rows) return Response.json({ data });
 
-  //   Type assertion
   const duneData = rows as unknown as DuneData[];
 
-  // clean duneData
   const cleanDuneData = duneData
     .filter(
       (data) =>
@@ -50,7 +42,7 @@ export async function GET() {
       type: data.Type,
     }));
 
-  await insertTxs(cleanDuneData);
+  if (cleanDuneData.length > 0) await insertTxs(cleanDuneData);
 
   return Response.json(cleanDuneData);
 }
