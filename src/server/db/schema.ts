@@ -1,14 +1,7 @@
 // Example model schema from the Drizzle docs
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
-import { sql } from "drizzle-orm";
-import {
-  index,
-  pgTableCreator,
-  serial,
-  timestamp,
-  varchar,
-} from "drizzle-orm/pg-core";
+import { index, pgTableCreator, serial, timestamp, varchar, integer } from "drizzle-orm/pg-core";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -18,19 +11,21 @@ import {
  */
 export const createTable = pgTableCreator((name) => `slice-first_${name}`);
 
-export const posts = createTable(
-  "post",
+export const txTable = createTable(
+  "tx_table",
   {
     id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }),
-    createdAt: timestamp("created_at", { withTimezone: true })
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdate(
-      () => new Date()
-    ),
+    type: varchar("type", { length: 256 }).notNull(),
+    tx_id: varchar("tx_id", { length: 256 }).notNull().unique(),
+    from: varchar("from", { length: 256 }).notNull(),
+    to: varchar("to", { length: 256 }).notNull(),
+    amount: varchar("amount").notNull(),
+    balance: varchar("balance").notNull(),
   },
-  (example) => ({
-    nameIndex: index("name_idx").on(example.name),
+  (txTable) => ({
+    txIdIndex: index("tx_id_idx").on(txTable.tx_id),
   })
 );
+
+export type InsertTx = typeof txTable.$inferInsert;
+export type SelectTx = typeof txTable.$inferSelect;
