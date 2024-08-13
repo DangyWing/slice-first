@@ -8,7 +8,7 @@ export interface DuneLendingData {
   blockchain: string;
   days_active: number;
   days_active_percentile: number;
-  event_type: EventType;
+  event_type: string;
   first_tx_date: string;
   last_tx_date: string;
   project: string;
@@ -18,12 +18,6 @@ export interface DuneLendingData {
   total_volume_percentile: number;
   volume_last_3_months_percentile: number;
   volume_last_6_months_percentile: number;
-}
-
-export enum EventType {
-  Borrow = "borrow",
-  BorrowSupply = "borrow,supply",
-  Supply = "supply",
 }
 
 export async function GET() {
