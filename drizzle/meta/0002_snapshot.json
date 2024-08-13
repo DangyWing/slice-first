@@ -1,0 +1,208 @@
+{
+  "id": "567f0a0d-3098-4e76-8366-957b86a87538",
+  "prevId": "7fa8e532-9927-4b92-bfb9-012a5f2f0f95",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.slice-first_lending": {
+      "name": "slice-first_lending",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "address": {
+          "name": "address",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "blockchain": {
+          "name": "blockchain",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "days_active": {
+          "name": "days_active",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "days_active_percentile": {
+          "name": "days_active_percentile",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "event_type": {
+          "name": "event_type",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "first_tx_date": {
+          "name": "first_tx_date",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_tx_date": {
+          "name": "last_tx_date",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "project": {
+          "name": "project",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total_trades": {
+          "name": "total_trades",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total_trades_percentile": {
+          "name": "total_trades_percentile",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total_volume": {
+          "name": "total_volume",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total_volume_percentile": {
+          "name": "total_volume_percentile",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "volume_last_3_months_percentile": {
+          "name": "volume_last_3_months_percentile",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "volume_last_6_months_percentile": {
+          "name": "volume_last_6_months_percentile",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "address_idx": {
+          "name": "address_idx",
+          "columns": [
+            {
+              "expression": "address",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.slice-first_tx_table": {
+      "name": "slice-first_tx_table",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tx_id": {
+          "name": "tx_id",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "from": {
+          "name": "from",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "to": {
+          "name": "to",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "amount": {
+          "name": "amount",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "balance": {
+          "name": "balance",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "tx_id_idx": {
+          "name": "tx_id_idx",
+          "columns": [
+            {
+              "expression": "tx_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "slice-first_tx_table_tx_id_unique": {
+          "name": "slice-first_tx_table_tx_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "tx_id"
+          ]
+        }
+      }
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

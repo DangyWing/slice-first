@@ -1,0 +1,1 @@
+ALTER TABLE "slice-first_perps" ALTER COLUMN "assets_traded" SET DATA TYPE varchar;

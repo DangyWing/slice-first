@@ -1,36 +1,18 @@
 import { db } from "../db";
-import { count, eq } from "drizzle-orm";
-import { type SelectTx, type InsertTx, txTable } from "./schema";
 
-export async function insertTxs(data: InsertTx[]) {
-  await db.insert(txTable).values(data).onConflictDoNothing();
+import { lendingTable, type InsertLendingData, type InsertPerpsData, perpsTable } from "./schema";
+
+export async function insertLendingData(data: InsertLendingData[]) {
+  await db.insert(lendingTable).values(data).onConflictDoNothing();
 }
 
-export async function getTxById(id: SelectTx["id"]): Promise<
-  Array<{
-    id: number;
-    type: string;
-    tx_id: string;
-    from: string;
-    to: string;
-    amount: string;
-    balance: string;
-  }>
-> {
-  return db.select().from(txTable).where(eq(txTable.id, id));
+export async function insertPerpsData(data: InsertPerpsData[]) {
+  await db.insert(perpsTable).values(data).onConflictDoNothing();
 }
 
-export async function getTxCountByWallet(wallet: SelectTx["from"]) {
-  return db
-    .select({
-      postsCount: count(txTable.id),
-      source_wallet: txTable.from,
-    })
-    .from(txTable)
-    .where(eq(txTable.from, wallet))
-    .groupBy(txTable.from);
+export async function getAllLendingData() {
+  return db.select().from(lendingTable);
 }
-
-export async function getAllTxs() {
-  return db.select().from(txTable);
+export async function getAllPerpsData() {
+  return db.select().from(perpsTable);
 }

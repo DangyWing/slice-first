@@ -1,0 +1,1 @@
+ALTER TABLE "slice-first_lending" ADD CONSTRAINT "slice-first_lending_address_unique" UNIQUE("address");

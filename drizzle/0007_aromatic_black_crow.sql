@@ -1,0 +1,1 @@
+ALTER TABLE "slice-first_perps" ALTER COLUMN "project" SET DATA TYPE varchar;
