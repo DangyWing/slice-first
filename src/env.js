@@ -9,6 +9,7 @@ export const env = createEnv({
   server: {
     DUNE_API_KEY: z.string().min(1),
     DATABASE_URL: z.string().url(),
+    MORALIS_API_KEY: z.string().min(1),
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   },
 
@@ -28,6 +29,7 @@ export const env = createEnv({
   runtimeEnv: {
     DUNE_API_KEY: process.env.DUNE_API_KEY,
     DATABASE_URL: process.env.DATABASE_URL,
+    MORALIS_API_KEY: process.env.MORALIS_API_KEY,
     NODE_ENV: process.env.NODE_ENV,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
