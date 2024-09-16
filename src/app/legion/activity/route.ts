@@ -2,7 +2,6 @@ export const dynamic = "force-dynamic"; // defaults to auto
 
 import { type NextRequest, NextResponse } from "next/server";
 import { isAddress } from "viem";
-// import { getMoralisData } from "~/server/moralis/getMoralisData";
 import { getMoralisDataMultipleAddressesAndChains } from "~/server/moralis/getMoralisDataMultipleAddressesAndChains";
 import { processActivityResults } from "~/utils/impact/analysis";
 import { apiAuth } from "~/utils/supabase/auth";

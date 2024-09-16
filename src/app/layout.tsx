@@ -4,8 +4,8 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Slice First Run",
-  description: "Created by DangyWing for Slice Analytics",
+  title: "Slice Services",
+  description: "Services by Slice Analytics",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
